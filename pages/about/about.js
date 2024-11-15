@@ -1,0 +1,5 @@
+Page({
+  // data: {
+  //   logoUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNjAiIGhlaWdodD0iMTYwIiB2aWV3Qm94PSIwIDAgMTYwIDE2MCI+PHJlY3Qgd2lkdGg9IjE2MCIgaGVpZ2h0PSIxNjAiIGZpbGw9IiMzYTdiZDUiIHJ4PSIyMCIvPjx0ZXh0IHg9IjgwIiB5PSI5MCIgZm9udC1zaXplPSI4MCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+QXBwPC90ZXh0Pjwvc3ZnPg=='
+  // }
+}) 

@@ -1,0 +1,100 @@
+<view class="container">
+  <!-- 顶部用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-info">
+      <view class="avatar-container" bindtap="changeAvatar">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <view class="avatar-edit-hint">点击修改</view>
+      </view>
+      <view class="user-detail" bindtap="changeNickname">
+        <text class="nickname">{{userInfo.nickName}}</text>
+        <text class="edit-hint">点击修改昵称</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据概览卡片 -->
+  <view class="overview-section">
+    <view class="overview-header">
+      <text class="overview-title">数据概览</text>
+    </view>
+    
+    <!-- 任务统计 -->
+    <view class="stats-card">
+      <view class="stats-header">
+        <text class="stats-title">任务完成情况</text>
+        <text class="completion-rate">完成率 {{taskStats.completionRate}}%</text>
+      </view>
+      <view class="stats-content">
+        <view class="stats-item">
+          <text class="stats-num primary">{{taskStats.total}}</text>
+          <text class="stats-label">总任务</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-num success">{{taskStats.completed}}</text>
+          <text class="stats-label">已完成</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-num warning">{{taskStats.ongoing}}</text>
+          <text class="stats-label">进行中</text>
+        </view>
+      </view>
+      <view class="progress-bar">
+        <view class="progress" style="width: {{taskStats.completionRate}}%"></view>
+      </view>
+    </view>
+
+    <!-- 笔记统计 -->
+    <view class="stats-card">
+      <view class="stats-header">
+        <text class="stats-title">笔记统计</text>
+      </view>
+      <view class="stats-content">
+        <view class="stats-item">
+          <text class="stats-num info">{{noteStats.total}}</text>
+          <text class="stats-label">笔记总数</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-num secondary">{{noteStats.categories}}</text>
+          <text class="stats-label">笔记分类</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-num accent">{{noteStats.tags}}</text>
+          <text class="stats-label">使用标签</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于我们 -->
+  <view class="about-section">
+    <view class="about-card" bindtap="navigateToAbout">
+      <view class="about-content">
+        <image class="about-icon" src="{{icons.aboutIcon}}" mode="aspectFit"></image>
+        <text class="about-text">关于我们</text>
+      </view>
+      <text class="arrow-icon">›</text>
+    </view>
+  </view>
+
+  <!-- 底部版本信息 -->
+  <view class="footer">
+    <text class="version">知梭 v1.0.0</text>
+    <text class="copyright">Copyright © 2024</text>
+  </view>
+</view>
+
+<!-- 修改昵称弹窗 -->
+<view class="modal" wx:if="{{showNicknameModal}}">
+  <view class="modal-content">
+    <view class="modal-header">修改昵称</view>
+    <input class="nickname-input" 
+           value="{{newNickname}}" 
+           bindinput="onNicknameInput"
+           placeholder="请输入新昵称"/>
+    <view class="modal-footer">
+      <button class="modal-btn cancel" bindtap="cancelNicknameEdit">取消</button>
+      <button class="modal-btn confirm" bindtap="saveNickname">确定</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,110 @@
+<!--pages/data/visualization/visualization.wxml-->
+<view class="container {{isLoading ? 'loading' : ''}}">
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{isLoading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">数据加载中...</text>
+  </view>
+
+  <!-- 错误提示 -->
+  <view class="error-container" wx:elif="{{hasError}}">
+    <icon type="warn" size="64" color="#e74c3c"></icon>
+    <text class="error-text">{{errorMsg}}</text>
+    <button class="retry-btn" bindtap="onRetryTap">重试</button>
+  </view>
+
+  <!-- 主要内容 -->
+  <block wx:else>
+    <!-- 任务概览卡片 -->
+    <view class="overview-card" animation="{{animation}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">任务概览</text>
+        <text class="refresh-hint">下拉刷新数据</text>
+      </view>
+      <view class="stats-grid">
+        <view class="stats-item">
+          <text class="stats-num total">{{taskStats.total}}</text>
+          <text class="stats-label">总任务</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-num completed">{{taskStats.completed}}</text>
+          <text class="stats-label">已完成</text>
+        </view>
+        <view class="stats-item">
+          <text class="stats-num ongoing">{{taskStats.ongoing}}</text>
+          <text class="stats-label">进行中</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 完成率环形图 -->
+    <view class="chart-card" animation="{{animation}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">任务完成率</text>
+      </view>
+      <canvas canvas-id="completionChart" 
+              class="chart-canvas"
+              style="width:{{canvasWidth}}px; height:{{canvasHeight}}px">
+      </canvas>
+    </view>
+
+    <!-- 优先级分布图 -->
+    <view class="chart-card" animation="{{animation}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">任务优先级分布</text>
+      </view>
+      <canvas canvas-id="priorityChart" 
+              class="chart-canvas"
+              style="width:{{canvasWidth}}px; height:{{canvasHeight}}px">
+      </canvas>
+    </view>
+
+    <!-- 每周趋势图 -->
+    <view class="chart-card" animation="{{animation}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">近7天完成趋势</text>
+      </view>
+      <canvas canvas-id="weeklyChart" 
+              class="chart-canvas"
+              style="width:{{canvasWidth}}px; height:{{canvasHeight}}px">
+      </canvas>
+    </view>
+
+    <!-- 笔记统计 -->
+    <view class="stats-card" animation="{{animation}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">笔记统计</text>
+      </view>
+      <view class="note-stats">
+        <view class="total-notes">
+          <text class="stats-num">{{noteStats.total}}</text>
+          <text class="stats-label">笔记总数</text>
+        </view>
+        <view class="categories-list">
+          <view class="category-item" 
+                wx:for="{{noteStats.categories}}" 
+                wx:key="name"
+                hover-class="item-hover">
+            <text class="category-name">{{item.name}}</text>
+            <text class="category-count">{{item.count}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 标签云 -->
+    <view class="stats-card" animation="{{animation}}" hover-class="card-hover">
+      <view class="card-header">
+        <text class="card-title">标签统计</text>
+      </view>
+      <view class="tag-cloud">
+        <text class="tag" 
+              wx:for="{{noteStats.tags}}" 
+              wx:key="*this"
+              hover-class="tag-hover">
+          #{{item}}
+        </text>
+      </view>
+    </view>
+  </block>
+</view>

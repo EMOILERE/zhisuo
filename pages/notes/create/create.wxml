@@ -1,0 +1,72 @@
+<view class="container">
+  <form bindsubmit="submitNote">
+    <!-- 分类选择 -->
+    <view class="form-group">
+      <text class="label">选择分类</text>
+      <scroll-view class="category-scroll" scroll-x enable-flex>
+        <view class="category-item {{selectedCategory === item._id ? 'active' : ''}}"
+              wx:for="{{categories}}" 
+              wx:key="_id"
+              bindtap="selectCategory" 
+              data-id="{{item._id}}">
+          {{item.name}}
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 笔记内容 -->
+    <view class="form-group">
+      <text class="label">笔记内容</text>
+      <textarea class="content-input" 
+                name="content" 
+                placeholder="写下你的想法..."
+                maxlength="1000"
+                value="{{content}}"
+                bindinput="onContentInput"/>
+      <text class="word-count">{{contentLength}}/1000</text>
+    </view>
+
+    <!-- 标签输入 -->
+    <view class="form-group">
+      <text class="label">添加标签</text>
+      <view class="tag-input-container">
+        <view class="tag-list">
+          <view class="tag-item" 
+                wx:for="{{tags}}" 
+                wx:key="*this">
+            <text class="tag-text">#{{item}}</text>
+            <text class="tag-delete" 
+                  catchtap="deleteTag" 
+                  data-index="{{index}}">×</text>
+          </view>
+        </view>
+        <input class="tag-input" 
+               placeholder="输入标签按回车添加" 
+               value="{{newTag}}"
+               bindconfirm="addTag"
+               bindinput="onTagInput"/>
+      </view>
+    </view>
+
+    <!-- 关联任务 -->
+    <view class="form-group">
+      <text class="label">关联任务（可选）</text>
+      <picker mode="selector" 
+              range="{{tasks}}" 
+              range-key="title"
+              bindchange="selectTask">
+        <view class="task-picker">
+          <text wx:if="{{selectedTask}}">{{selectedTask.title}}</text>
+          <text wx:else class="placeholder">选择要关联的任务</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 底部按钮 -->
+    <view class="button-group">
+      <button class="btn btn-cancel" bindtap="cancel">取消</button>
+      <button class="btn btn-submit" form-type="submit">保存笔记</button>
+    </view>
+  </form>
+</view> 

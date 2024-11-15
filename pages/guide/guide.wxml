@@ -1,0 +1,53 @@
+<!--pages/guide/guide.wxml-->
+<view class="container">
+  <!-- 顶部标签栏 -->
+  <scroll-view class="tab-bar" scroll-x enable-flex>
+    <view class="tab {{currentTab === index ? 'active' : ''}}"
+          wx:for="{{tabs}}" 
+          wx:key="name"
+          bindtap="switchTab"
+          data-index="{{index}}">
+      <image class="tab-icon" src="{{item.icon}}" mode="aspectFit"></image>
+      <text>{{item.name}}</text>
+    </view>
+  </scroll-view>
+
+  <!-- 引导内容 -->
+  <swiper class="guide-swiper" 
+          current="{{currentTab}}" 
+          bindchange="onSwiperChange">
+    <swiper-item wx:for="{{guides}}" wx:key="title">
+      <scroll-view class="guide-scroll" scroll-y>
+        <view class="guide-section">
+          <view class="guide-header">
+            <image class="section-icon" src="{{item.icon}}" mode="aspectFit"></image>
+            <text class="section-title">{{item.title}}</text>
+          </view>
+          
+          <view class="steps">
+            <view class="step" wx:for="{{item.steps}}" wx:key="title" wx:for-item="step">
+              <view class="step-header">
+                <text class="step-number">{{index + 1}}</text>
+                <text class="step-title">{{step.title}}</text>
+              </view>
+              <view class="step-content">
+                <text class="step-desc">{{step.content}}</text>
+                <image wx:if="{{step.image}}" 
+                       class="step-image" 
+                       src="{{step.image}}" 
+                       mode="widthFix"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 底部导航 -->
+  <view class="nav-dots">
+    <view class="dot {{currentTab === index ? 'active' : ''}}"
+          wx:for="{{tabs}}"
+          wx:key="name"></view>
+  </view>
+</view>

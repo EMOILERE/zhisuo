@@ -1,0 +1,83 @@
+<view class="container">
+  <!-- 分类标签栏 -->
+  <scroll-view class="category-bar" scroll-x enable-flex>
+    <view class="category-item {{currentCategory === 'all' ? 'active' : ''}}" 
+          bindtap="switchCategory" data-category="all">
+      全部笔记
+    </view>
+    <view class="category-item {{currentCategory === item._id ? 'active' : ''}}" 
+          wx:for="{{categories}}" 
+          wx:key="_id"
+          bindtap="switchCategory" 
+          data-category="{{item._id}}">
+      {{item.name}}
+      <text class="delete-icon" 
+            catchtap="deleteCategory" 
+            data-id="{{item._id}}" 
+            data-name="{{item.name}}">×</text>
+    </view>
+    <view class="category-item add" bindtap="showCategoryModal">
+      <text class="add-icon">+</text>
+    </view>
+  </scroll-view>
+
+  <!-- 标签筛选区 -->
+  <view class="tag-filter">
+    <scroll-view class="tag-scroll" scroll-x enable-flex>
+      <view class="tag {{selectedTags.includes(item) ? 'active' : ''}}"
+            wx:for="{{tags}}" 
+            wx:key="*this"
+            bindtap="toggleTag" 
+            data-tag="{{item}}">
+        #{{item}}
+        <text class="delete-icon" 
+              catchtap="deleteTag" 
+              data-tag="{{item}}">×</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 笔记列表 -->
+  <scroll-view class="note-list" scroll-y>
+    <view class="note-item" 
+          wx:for="{{filteredNotes}}" 
+          wx:key="_id"
+          bindtap="navigateToDetail" 
+          data-id="{{item._id}}">
+      <view class="note-header">
+        <text class="note-category">{{item.categoryName}}</text>
+        <text class="note-date">{{item.createTimeFormatted}}</text>
+      </view>
+      <view class="note-content">{{item.content}}</view>
+      <view class="note-footer">
+        <view class="tag-list">
+          <text class="tag" wx:for="{{item.tags}}" wx:key="*this" wx:for-item="tag">#{{tag}}</text>
+        </view>
+        <view class="note-task" wx:if="{{item.taskId}}">
+          <text class="task-icon">📋</text>
+          <text class="task-title">{{item.taskTitle}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 新建笔记按钮 -->
+  <view class="add-button" bindtap="navigateToCreate">
+    <text class="add-icon">+</text>
+  </view>
+
+  <!-- 新建分类弹窗 -->
+  <view class="modal" wx:if="{{showCategoryModal}}">
+    <view class="modal-content">
+      <view class="modal-header">新建分类</view>
+      <input class="modal-input" 
+             value="{{newCategory}}" 
+             bindinput="onCategoryInput"
+             placeholder="请输入分类名称"/>
+      <view class="modal-footer">
+        <button class="modal-btn cancel" bindtap="cancelCategory">取消</button>
+        <button class="modal-btn confirm" bindtap="saveCategory">确定</button>
+      </view>
+    </view>
+  </view>
+</view> 

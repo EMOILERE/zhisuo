@@ -1,14 +1,61 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/tasks/tasks",
+    "pages/tasks/create/create",
+    "pages/tasks/detail/detail",
+    "pages/notes/notes",
+    "pages/notes/create/create",
+    "pages/notes/detail/detail",
+    "pages/data/visualization/visualization",
+    "pages/me/me",
+    "pages/login/login",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "我的小程序",
+    "navigationBarTitleText": "知梭",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "custom": false,
+    "color": "#999999",
+    "selectedColor": "#3a7bd5",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/tasks/tasks",
+        "text": "任务",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/notes/notes",
+        "text": "笔记",
+        "iconPath": "images/tabbar/note.png",
+        "selectedIconPath": "images/tabbar/note-active.png"
+      },
+      {
+        "pagePath": "pages/data/visualization/visualization",
+        "text": "数据",
+        "iconPath": "images/tabbar/data.png",
+        "selectedIconPath": "images/tabbar/data-active.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的",
+        "iconPath": "images/tabbar/me.png",
+        "selectedIconPath": "images/tabbar/me-active.png"
+      }
+    ]
+  },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "permission": {
+    "scope.subscribeMessage": {
+      "desc": "用于发送任务到期提醒"
+    }
+  }
 } 

@@ -1,0 +1,109 @@
+<view class="container">
+  <!-- 顶部信息栏 -->
+  <view class="header">
+    <view class="header-info">
+      <view class="category-tag">{{note.categoryName}}</view>
+      <view class="date-info">
+        <text class="date-label">创建于</text>
+        <text class="date">{{note.createTimeFormatted}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 编辑模式 -->
+  <block wx:if="{{isEditing}}">
+    <view class="edit-section">
+      <!-- 分类选择 -->
+      <view class="form-group">
+        <text class="label">分类</text>
+        <scroll-view class="category-scroll" scroll-x enable-flex>
+          <view class="category-item {{editData.categoryId === item._id ? 'active' : ''}}"
+                wx:for="{{categories}}" 
+                wx:key="_id"
+                bindtap="selectCategory" 
+                data-id="{{item._id}}">
+            {{item.name}}
+          </view>
+        </scroll-view>
+      </view>
+
+      <!-- 内容编辑 -->
+      <view class="form-group">
+        <text class="label">内容</text>
+        <textarea class="content-input" 
+                  value="{{editData.content}}"
+                  bindinput="onContentInput"
+                  maxlength="1000"
+                  placeholder="写下你的想法..."/>
+        <text class="word-count">{{contentLength}}/1000</text>
+      </view>
+
+      <!-- 标签编辑 -->
+      <view class="form-group">
+        <text class="label">标签</text>
+        <view class="tag-input-container">
+          <view class="tag-list">
+            <view class="tag-item" 
+                  wx:for="{{editData.tags}}" 
+                  wx:key="*this">
+              <text class="tag-text">#{{item}}</text>
+              <text class="tag-delete" 
+                    catchtap="deleteTag" 
+                    data-index="{{index}}">×</text>
+            </view>
+          </view>
+          <input class="tag-input" 
+                 placeholder="输入标签按回车添加" 
+                 value="{{newTag}}"
+                 bindconfirm="addTag"
+                 bindinput="onTagInput"/>
+        </view>
+      </view>
+
+      <!-- 编辑按钮组 -->
+      <view class="button-group">
+        <button class="btn btn-cancel" bindtap="cancelEdit">取消</button>
+        <button class="btn btn-save" bindtap="saveEdit">保存</button>
+      </view>
+    </view>
+  </block>
+
+  <!-- 查看模式 -->
+  <block wx:else>
+    <view class="content-section">
+      <!-- 笔记内容 -->
+      <view class="content-card">
+        <text class="content">{{note.content}}</text>
+      </view>
+      
+      <!-- 标签列表 -->
+      <view class="tags-section" wx:if="{{note.tags.length > 0}}">
+        <text class="tag" wx:for="{{note.tags}}" wx:key="*this">#{{item}}</text>
+      </view>
+
+      <!-- 关联任务 -->
+      <view class="related-task" wx:if="{{note.taskId}}" bindtap="navigateToTask">
+        <view class="task-card">
+          <text class="task-icon">📋</text>
+          <view class="task-info">
+            <text class="task-title">{{note.taskTitle}}</text>
+            <text class="task-hint">点击查看关联任务</text>
+          </view>
+          <text class="arrow-icon">›</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作栏 -->
+    <view class="footer-actions">
+      <button class="action-button edit" bindtap="toggleEdit">
+        <text class="action-icon">✎</text>
+        <text class="action-text">编辑笔记</text>
+      </button>
+      <button class="action-button delete" bindtap="deleteNote">
+        <text class="action-icon">🗑</text>
+        <text class="action-text">删除笔记</text>
+      </button>
+    </view>
+  </block>
+</view> 

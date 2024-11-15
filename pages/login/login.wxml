@@ -1,0 +1,85 @@
+<view class="page-container {{isLoading ? 'loading' : ''}}">
+  <view class="header">
+    <view class="header-content">
+      <view class="logo-container">
+        <image class="logo" src="{{logoSrc}}" mode="aspectFit"></image>
+        <view class="logo-glow"></view>
+      </view>
+      <text class="title">知梭</text>
+      <text class="subtitle">让数据可视化助力您的工作效率</text>
+    </view>
+    <view class="header-decoration"></view>
+  </view>
+
+  <view class="content">
+    <block wx:if="{{!hasUserInfo}}">
+      <view class="login-card">
+        <view class="welcome-text">欢迎使用</view>
+        <view class="slogan">智能数据分析，让办公更轻松</view>
+        
+        <view class="features-preview">
+          <view class="feature-item">
+            <view class="feature-icon">📊</view>
+            <view class="feature-text">数据可视化</view>
+          </view>
+          <view class="feature-item">
+            <view class="feature-icon">🔍</view>
+            <view class="feature-text">智能分析</view>
+          </view>
+          <view class="feature-item">
+            <view class="feature-icon">⚡</view>
+            <view class="feature-text">效率提升</view>
+          </view>
+        </view>
+
+        <view class="login-tip">登录体验更多功能</view>
+        
+        <button class="login-btn {{isLoading ? 'loading' : ''}}" 
+                bindtap="getUserProfile"
+                disabled="{{isLoading}}">
+          <view class="btn-content">
+            <image class="wechat-icon" src="{{wechatIconSrc}}" mode="aspectFit"></image>
+            <text>{{isLoading ? '登录中...' : '微信一键登录'}}</text>
+          </view>
+          <view class="btn-loading" wx:if="{{isLoading}}"></view>
+        </button>
+
+        <view class="privacy-section">
+          <view class="privacy-tip">
+            登录即表示同意
+            <text class="link" bindtap="showPrivacyPolicy">用户协议</text>
+            和
+            <text class="link" bindtap="showPrivacyPolicy">隐私政策</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="success-card">
+        <view class="success-icon">✓</view>
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class="login-status">{{loginStatusText}}</text>
+        <view class="redirect-tip">
+          <text>正在跳转到首页</text>
+          <view class="loading-dots">
+            <text class="dot">.</text>
+            <text class="dot">.</text>
+            <text class="dot">.</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="footer">
+    <view class="app-info">
+      <text class="version">知梭 v1.0.0</text>
+      <text class="copyright">Copyright © 2024</text>
+    </view>
+  </view>
+
+  <view class="loading-overlay" wx:if="{{isLoading}}">
+    <view class="loading-spinner"></view>
+  </view>
+</view> 

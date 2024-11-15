@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="header">
+    <image class="logo" src="/images/logo_zhisuo.png" mode="aspectFit"></image>
+    <text class="app-name">知梭</text>
+    <text class="version">Version 1.0.0</text>
+  </view>
+
+  <view class="content">
+    <view class="section">
+      <text class="section-title">开发者信息</text>
+      <view class="developer-info">
+        <text class="name">王宇彤</text>
+        <text class="school">兰州大学</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <text class="section-title">应用简介</text>
+      <text class="description">知梭是一款集任务管理与笔记功能于一体的效率工具，旨在帮助用户更好地组织工作与生活。通过数据可视化的方式，让您的工作更有条理，生活更加高效。</text>
+    </view>
+
+    <view class="section">
+      <text class="section-title">主要功能</text>
+      <view class="feature-list">
+        <view class="feature-item">
+          <view class="feature-dot">1</view>
+          <text class="feature-text">智能任务管理</text>
+        </view>
+        <view class="feature-item">
+          <view class="feature-dot">2</view>
+          <text class="feature-text">笔记分类整理</text>
+        </view>
+        <view class="feature-item">
+          <view class="feature-dot">3</view>
+          <text class="feature-text">数据统计分析</text>
+        </view>
+        <view class="feature-item">
+          <view class="feature-dot">4</view>
+          <text class="feature-text">可视化展示</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text class="copyright">Copyright © 2024 All Rights Reserved</text>
+  </view>
+
+  <view class="contact-button">
+    <text class="contact-icon">✉</text>
+  </view>
+</view> 

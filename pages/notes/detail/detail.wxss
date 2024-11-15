@@ -1,0 +1,345 @@
+.container {
+  min-height: 100vh;
+  background-color: #f6f8fa;
+  padding-bottom: 120rpx;
+}
+
+/* 顶部信息栏 */
+.header {
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  padding: 50rpx 32rpx 60rpx;
+  color: #fff;
+  border-radius: 0 0 40rpx 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(52, 152, 219, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加背景装饰 */
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.header-info {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeInDown 0.5s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-tag {
+  font-size: 26rpx;
+  padding: 12rpx 30rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 30rpx;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.category-tag::before {
+  content: '📝';
+  font-size: 28rpx;
+}
+
+.date-info {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 24rpx;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  backdrop-filter: blur(5px);
+}
+
+.date-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.date {
+  font-family: 'DIN Alternate', sans-serif;
+  letter-spacing: 1rpx;
+}
+
+/* 内容区域 */
+.content-section {
+  padding: 24rpx;
+  margin-top: -30rpx;
+  animation: slideUp 0.5s ease;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加装饰性引号 */
+.content-card::before {
+  content: '"';
+  position: absolute;
+  top: -20rpx;
+  left: 20rpx;
+  font-size: 120rpx;
+  color: rgba(52, 152, 219, 0.1);
+  font-family: serif;
+}
+
+.content {
+  font-size: 32rpx;
+  color: #2c3e50;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* 标签部分 */
+.tags-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 30rpx;
+  animation: fadeIn 0.6s ease;
+}
+
+.tag {
+  font-size: 26rpx;
+  color: #3498db;
+  background: rgba(52, 152, 219, 0.08);
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  transition: all 0.3s ease;
+}
+
+.tag:active {
+  transform: scale(0.95);
+  background: rgba(52, 152, 219, 0.15);
+}
+
+.tag::before {
+  content: '#';
+  color: #3498db;
+  font-weight: bold;
+}
+
+/* 关联任务卡片 */
+.related-task {
+  margin-bottom: 30rpx;
+  animation: fadeIn 0.7s ease;
+}
+
+.task-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加任务卡片背景效果 */
+.task-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120rpx;
+  height: 120rpx;
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), transparent);
+  border-radius: 0 24rpx 0 120rpx;
+}
+
+.task-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.task-icon {
+  font-size: 48rpx;
+  background: rgba(52, 152, 219, 0.1);
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40rpx;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-title {
+  font-size: 30rpx;
+  color: #2c3e50;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.task-hint {
+  font-size: 24rpx;
+  color: #95a5a6;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.task-hint::before {
+  content: '👉';
+  font-size: 24rpx;
+}
+
+.arrow-icon {
+  color: #bdc3c7;
+  font-size: 36rpx;
+  transition: transform 0.3s ease;
+}
+
+.task-card:active .arrow-icon {
+  transform: translateX(10rpx);
+}
+
+/* 底部操作栏 */
+.footer-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  gap: 24rpx;
+  animation: slideUp 0.4s ease;
+  z-index: 100;
+}
+
+.action-button {
+  flex: 1;
+  height: 96rpx;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.action-button:active {
+  transform: scale(0.96);
+}
+
+.action-button.edit {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(52, 152, 219, 0.3);
+}
+
+.action-button.delete {
+  background: #fff;
+  color: #e74c3c;
+  border: 2rpx solid #e74c3c;
+}
+
+.action-icon {
+  font-size: 32rpx;
+  transition: transform 0.3s ease;
+}
+
+.action-button:active .action-icon {
+  transform: rotate(15deg);
+}
+
+.action-text {
+  font-size: 28rpx;
+}
+
+/* 编辑模式样式增强 */
+.edit-section {
+  padding: 24rpx;
+  animation: fadeIn 0.4s ease;
+}
+
+.form-group {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.form-group:active {
+  transform: scale(0.99);
+}
+
+/* 添加加载动画 */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+} 

@@ -1,0 +1,67 @@
+<view class="container">
+  <!-- 添加帮助按钮 -->
+  <view class="help-button" bindtap="navigateToGuide">
+    <image class="help-icon" src="{{helpIcon}}" mode="aspectFit"></image>
+    <text class="help-text">使用帮助</text>
+  </view>
+
+  <!-- 进度概览 -->
+  <view class="progress-section">
+    <view class="progress-header">
+      <text class="progress-title">任务进度</text>
+      <text class="progress-percent">{{progressPercent}}%</text>
+    </view>
+    <progress class="progress-bar" percent="{{progressPercent}}" stroke-width="3" activeColor="#3a7bd5" backgroundColor="#eee"/>
+    <view class="progress-stats">
+      <view class="stat-item">
+        <text class="stat-num">{{taskStats.total}}</text>
+        <text class="stat-label">总任务</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{taskStats.ongoing}}</text>
+        <text class="stat-label">进行中</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-num">{{taskStats.completed}}</text>
+        <text class="stat-label">已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 筛选器 -->
+  <view class="filter-section">
+    <view class="filter-group">
+      <view class="filter-item {{currentStatus === 'all' ? 'active' : ''}}" bindtap="filterByStatus" data-status="all">全部</view>
+      <view class="filter-item {{currentStatus === 'ongoing' ? 'active' : ''}}" bindtap="filterByStatus" data-status="ongoing">进行中</view>
+      <view class="filter-item {{currentStatus === 'completed' ? 'active' : ''}}" bindtap="filterByStatus" data-status="completed">已完成</view>
+    </view>
+    <view class="filter-group">
+      <view class="filter-item {{currentPriority === 'all' ? 'active' : ''}}" bindtap="filterByPriority" data-priority="all">全部优先级</view>
+      <view class="filter-item {{currentPriority === 'high' ? 'active' : ''}}" bindtap="filterByPriority" data-priority="high">高</view>
+      <view class="filter-item {{currentPriority === 'medium' ? 'active' : ''}}" bindtap="filterByPriority" data-priority="medium">中</view>
+      <view class="filter-item {{currentPriority === 'low' ? 'active' : ''}}" bindtap="filterByPriority" data-priority="low">低</view>
+    </view>
+  </view>
+
+  <!-- 任务列表 -->
+  <view class="task-list">
+    <view class="task-item" wx:for="{{filteredTasks}}" wx:key="id" bindtap="navigateToDetail" data-id="{{item._id}}">
+      <view class="task-content">
+        <view class="task-header">
+          <text class="task-title">{{item.title}}</text>
+          <text class="task-priority priority-{{item.priority}}">{{item.priorityText}}</text>
+        </view>
+        <text class="task-desc">{{item.description}}</text>
+        <view class="task-footer">
+          <text class="task-date">截止日期：{{item.dueDateFormatted}}</text>
+          <text class="task-status status-{{item.status}}">{{item.statusText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 新建任务按钮 -->
+  <view class="add-button" bindtap="navigateToCreate">
+    <text class="add-icon">+</text>
+  </view>
+</view>

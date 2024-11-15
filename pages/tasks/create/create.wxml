@@ -1,0 +1,51 @@
+<view class="container">
+  <form bindsubmit="submitTask">
+    <view class="form-group">
+      <text class="label">任务标题</text>
+      <input class="input" name="title" placeholder="请输入任务标题" value="{{title}}" />
+    </view>
+
+    <view class="form-group">
+      <text class="label">任务描述</text>
+      <textarea class="textarea" name="description" placeholder="请输入任务描述" value="{{description}}"></textarea>
+    </view>
+
+    <view class="form-group">
+      <text class="label">优先级</text>
+      <view class="priority-group">
+        <view class="priority-item {{priority === 'high' ? 'active' : ''}}" bindtap="setPriority" data-priority="high">
+          高
+        </view>
+        <view class="priority-item {{priority === 'medium' ? 'active' : ''}}" bindtap="setPriority" data-priority="medium">
+          中
+        </view>
+        <view class="priority-item {{priority === 'low' ? 'active' : ''}}" bindtap="setPriority" data-priority="low">
+          低
+        </view>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="label">截止日期</text>
+      <picker mode="date" value="{{dueDate}}" start="{{today}}" bindchange="setDueDate">
+        <view class="picker">
+          {{dueDate || '请选择截止日期'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <text class="label">提醒时间</text>
+      <picker mode="time" value="{{reminderTime}}" bindchange="setReminderTime">
+        <view class="picker">
+          {{reminderTime || '请选择提醒时间'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="btn-group">
+      <button class="btn btn-cancel" bindtap="cancel">取消</button>
+      <button class="btn btn-submit" form-type="submit">创建任务</button>
+    </view>
+  </form>
+</view> 

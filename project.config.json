@@ -34,11 +34,12 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
-  "appid": "wx6d98b44184edfbc8",
+  "appid": "wxc6f4835d2f527c72",
   "projectname": "我的小程序",
   "condition": {},
   "editorSetting": {

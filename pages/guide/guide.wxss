@@ -1,0 +1,190 @@
+.container {
+  min-height: 100vh;
+  background: #f6f8fa;
+  padding: 0;
+  position: relative;
+}
+
+/* 标签栏 */
+.tab-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background: #fff;
+  display: flex;
+  padding: 0 20rpx;
+  white-space: nowrap;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  z-index: 100;
+}
+
+.tab {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 40rpx;
+  gap: 8rpx;
+  transition: all 0.3s ease;
+}
+
+.tab-icon {
+  width: 48rpx;
+  height: 48rpx;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.tab text {
+  font-size: 24rpx;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  transform: scale(1.05);
+}
+
+.tab.active .tab-icon {
+  opacity: 1;
+}
+
+.tab.active text {
+  color: #3a7bd5;
+  font-weight: 500;
+}
+
+/* 内容区域 */
+.guide-swiper {
+  height: calc(100vh - 120rpx);
+  margin-top: 120rpx;
+}
+
+.guide-scroll {
+  height: 100%;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.guide-section {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.3s ease;
+}
+
+.guide-header {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.section-icon {
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* 步骤样式 */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.step {
+  background: #f8fafc;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  transition: all 0.3s ease;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 20rpx;
+}
+
+.step-number {
+  width: 40rpx;
+  height: 40rpx;
+  background: #3a7bd5;
+  color: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.step-title {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.step-desc {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.step-image {
+  width: 100%;
+  border-radius: 12rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 底部导航点 */
+.nav-dots {
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 16rpx;
+  z-index: 100;
+}
+
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 8rpx;
+  background: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 32rpx;
+  background: #3a7bd5;
+}
+
+/* 动画 */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
